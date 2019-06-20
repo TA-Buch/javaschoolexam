@@ -8,6 +8,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PolishLineCalc {
+    /**
+     * Evaluate statement by representing expressions as Reverse Polish notation.
+     *
+     * @param statement mathematical statement containing digits, '.' (dot) as decimal mark,
+     *                  parentheses, operations signs '+', '-', '*', '/'<br>
+     * @return string value containing result of evaluation or null (in case of zero dividing)
+     */
 
     private static final Set<String> OPERATORS = Stream.of("+","-","/","*").collect(Collectors.toSet());
     private static final  String DELIMITERS = String.join("",OPERATORS).concat("()");

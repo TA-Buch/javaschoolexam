@@ -3,9 +3,6 @@ package com.tsystems.javaschool.tasks.pyramid;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-
-
 public class PyramidBuilder {
 
     /**
@@ -34,7 +31,7 @@ public class PyramidBuilder {
         for (; i <= numberOfElements; i += height) {
             height++;
         }
-        if (i > numberOfElements + 1) {
+        if (i > numberOfElements + 1) {                  // not enough numbers to build pyramid
             throw new CannotBuildPyramidException();
         }
         return height;
@@ -44,8 +41,8 @@ public class PyramidBuilder {
         int[][] pyramid = new int[ height][width];
         Iterator<Integer> sortNumIter = numbers.iterator();
         for (int i = 0; i <  height; i++) {
-            int startPos =  height - (i + 1);
-            int stopPos =  height + i;
+            int startPos =  height - (i + 1);             // left position for  i-level value
+            int stopPos =  height + i;                    // right position for  i-level value
             for (int j = startPos; j <= stopPos; j += 2) {
                 pyramid[i][j] = sortNumIter.next();
             }
