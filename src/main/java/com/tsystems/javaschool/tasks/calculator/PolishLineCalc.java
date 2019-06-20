@@ -17,9 +17,7 @@ public class PolishLineCalc {
     private Stack<String> stackCalcExpr = new Stack<>();
 
     public String calculate(String statement) {
-        stackOperations.clear();
-        stackPolishLine.clear();
-        stackCalcExpr.clear();
+        clearContext();
         StringTokenizer tokenizingStatement = new StringTokenizer(statement, DELIMITERS, true);
         parseToPolishLine(tokenizingStatement);
         if (stackPolishLine.empty()) {
@@ -100,7 +98,7 @@ public class PolishLineCalc {
         }
     }
 
-    private static boolean isNumber (String token) {
+    private static boolean isNumber(String token) {
         try {
             Double.parseDouble(token);
         } catch (Exception exc) {
@@ -116,9 +114,14 @@ public class PolishLineCalc {
     private static int getPriority(String operation) {
         if ("+".equals(operation) || "-".equals(operation)) {
             return 1;
-        }
-        else {
+        } else {
             return 2;
         }
+    }
+
+    private void clearContext() {
+        stackOperations.clear();
+        stackPolishLine.clear();
+        stackCalcExpr.clear();
     }
 }

@@ -16,7 +16,9 @@ public class Subsequence {
      */
     @SuppressWarnings("rawtypes")
     public boolean find(List<Object> x, List<Object> y) {
-        if (x == null || y == null) throw new IllegalArgumentException();
+        if (x == null || y == null) {
+            throw new IllegalArgumentException();
+        }
         if (x.isEmpty()) {
             return true;
         }
