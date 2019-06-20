@@ -38,15 +38,4 @@ public class Subsequence {
         }
         return foundXs == x.size();
     }
-
-//    public boolean find(List<Object> x, List<Object> y) {
-//        if (x == null || y == null) {
-//          throw new IllegalArgumentException();
-//    }
-//        List<Object> second = y.stream()
-//                .filter(x::contains)
-//                .distinct()
-//                .collect(toList());
-//        return x.equals(second);
-//    }
 }

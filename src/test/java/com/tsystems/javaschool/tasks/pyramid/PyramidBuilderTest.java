@@ -177,6 +177,7 @@ public class PyramidBuilderTest {
         comparePyramids(expected, pyramid);
     }
 
+    //Throw exception if duplicates in the input list
     @Test(expected = CannotBuildPyramidException.class)
     public void buildPyramid10() {
         // given
