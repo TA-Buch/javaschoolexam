@@ -13,6 +13,7 @@ The exam includes 3 tasks to be done: [Calculator](/tasks/Calculator.md), [Pyram
 
 * Author name : Tatyana Zarifova
 * Codeship : https://app.codeship.com/projects/76b7a750-7592-0137-4d77-46c88a84ebc0/status?branch=master
+[ ![Codeship Status for tschool/javaschoolexam](https://app.codeship.com/projects/76b7a750-7592-0137-4d77-46c88a84ebc0/status?branch=master)](https://app.codeship.com/projects/201451)
 
 
 ### How to start?  ###
