@@ -16,13 +16,10 @@ public class PolishLineCalc {
     private Stack<String> stackPolishLine = new Stack<>();
     private Stack<String> stackCalcExpr = new Stack<>();
 
-    PolishLineCalc() {
+    public String calculate(String statement) {
         stackOperations.clear();
         stackPolishLine.clear();
         stackCalcExpr.clear();
-    }
-
-    public String calculate(String statement) {
         StringTokenizer tokenizingStatement = new StringTokenizer(statement, DELIMITERS, true);
         parseToPolishLine(tokenizingStatement);
         if (stackPolishLine.empty()) {
@@ -103,7 +100,7 @@ public class PolishLineCalc {
         }
     }
 
-    private boolean isNumber (String token) {
+    private static boolean isNumber (String token) {
         try {
             Double.parseDouble(token);
         } catch (Exception exc) {
@@ -112,11 +109,11 @@ public class PolishLineCalc {
         return true;
     }
 
-    private boolean isOperator(String token) {
+    private static boolean isOperator(String token) {
         return OPERATORS.contains(token);
     }
 
-    private int getPriority(String operation) {
+    private static int getPriority(String operation) {
         if ("+".equals(operation) || "-".equals(operation)) {
             return 1;
         }

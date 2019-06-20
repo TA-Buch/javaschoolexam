@@ -177,6 +177,17 @@ public class PyramidBuilderTest {
         comparePyramids(expected, pyramid);
     }
 
+    @Test(expected = CannotBuildPyramidException.class)
+    public void buildPyramid10() {
+        // given
+        List<Integer> input = Arrays.asList(1, 3, 2, 0, 0, 5);
+
+        // run
+        int[][] pyramid = pyramidBuilder.buildPyramid(input);
+
+        // assert (exception)
+    }
+
     private void comparePyramids(int[][] expected, int[][] pyramid) {
         Assert.assertEquals("Amount of rows is different.", expected.length, pyramid.length);
         for (int i = 0; i < expected.length; i++) {

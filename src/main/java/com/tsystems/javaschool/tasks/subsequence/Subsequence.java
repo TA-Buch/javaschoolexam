@@ -2,6 +2,7 @@ package com.tsystems.javaschool.tasks.subsequence;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class Subsequence {
 
@@ -19,14 +20,19 @@ public class Subsequence {
         if (x.isEmpty()) {
             return true;
         }
+        if (x.size() > y.size()) {
+            return false;
+        }
         int foundXs = 0;
         Iterator<Object> xIterator = x.iterator();
         Object currXElem = xIterator.next();
         for (int i = 0; i < y.size() && foundXs < x.size(); i++) {
-            if (currXElem.equals(y.get(i))) {
+            if (Objects.equals(currXElem, y.get(i))) {
                 foundXs++;
                 if (xIterator.hasNext()) {
                     currXElem = xIterator.next();
+                } else {
+                    break;
                 }
             }
         }

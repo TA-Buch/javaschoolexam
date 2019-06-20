@@ -1,8 +1,8 @@
 package com.tsystems.javaschool.tasks.pyramid;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
-import static java.util.Comparator.naturalOrder;
 
 public class PyramidBuilder {
 
@@ -16,8 +16,13 @@ public class PyramidBuilder {
      */
     public int[][] buildPyramid(List<Integer> inputNumbers) throws CannotBuildPyramidException {
         try {
-            List<Integer> sortedInputNumbers = new ArrayList<>(inputNumbers);
-            sortedInputNumbers.sort(Comparator.nullsFirst(Comparator.naturalOrder()));
+            List<Integer> sortedInputNumbers = inputNumbers.stream()
+                    .sorted(Comparator.nullsFirst(Comparator.naturalOrder()))
+                    .distinct()
+                    .collect(Collectors.toList());
+            if (inputNumbers.size() > sortedInputNumbers.size()) {
+                throw new CannotBuildPyramidException();
+            }
             int level = getPyramidHeight(sortedInputNumbers.size());
             int width = 2 * level - 1;
             int[][] pyramid = new int[level][width];
@@ -42,8 +47,6 @@ public class PyramidBuilder {
         for (i = 1; i <= numberOfElements; i += height) {
             height++;
         }
-        System.out.println(i);
-        System.out.println(height);
         if (i > numberOfElements+1) {
             throw new CannotBuildPyramidException();
         }
