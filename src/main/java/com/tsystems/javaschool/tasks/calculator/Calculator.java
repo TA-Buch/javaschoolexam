@@ -13,7 +13,9 @@ public class Calculator {
      *                  Example: <code>(1 + 38) * 4.5 - 1 / 2.</code>
      * @return string value containing result of evaluation or null if statement is invalid
      */
-    PolishLineCalc polishLineCalc = new PolishLineCalc();
+    private PolishLineCalc polishLineCalc = new PolishLineCalc();
+    private static final int SCALE = 4;
+    private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
 
     public String evaluate(String statement) {
         if (statement == null) {
@@ -24,7 +26,7 @@ public class Calculator {
             return null;
         }
         return BigDecimal.valueOf(Double.parseDouble(strExpr))
-                .setScale(4, RoundingMode.HALF_UP)
+                .setScale(SCALE, ROUNDING_MODE)
                 .stripTrailingZeros()
                 .toPlainString();
     }

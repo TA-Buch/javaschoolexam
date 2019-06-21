@@ -15,11 +15,15 @@ public class PyramidBuilder {
      */
     public int[][] buildPyramid(List<Integer> inputNumbers) throws CannotBuildPyramidException {
         List<Integer> sortedInputNumbers;
+        /*catches errors (like OutOfMemoryError) caused by very large input lists
+        *and NullPointerException caused by the presence of null in the input list*/
         try {
-            sortedInputNumbers = inputNumbers.stream().sorted().collect(Collectors.toList());
-        } catch (Throwable t) {                         // catches errors (like OutOfMemoryError)
-            throw new CannotBuildPyramidException();    // caused by very large input lists and NullPointerException
-        }                                               // caused by the presence of null in the input list
+            sortedInputNumbers = inputNumbers.stream()
+                    .sorted()
+                    .collect(Collectors.toList());
+        } catch (Throwable t) {
+            throw new CannotBuildPyramidException();
+        }
         int height = getPyramidHeight(sortedInputNumbers.size());
         int width = 2 * height - 1;
         return createPyramid(height, width, sortedInputNumbers);
@@ -39,12 +43,13 @@ public class PyramidBuilder {
 
     private static int[][] createPyramid(int height, int width, List<Integer> numbers) {
         int[][] pyramid = new int[ height][width];
-        Iterator<Integer> sortNumIter = numbers.iterator();
+        // assuming the list is already sorted
+        Iterator<Integer> sortIter = numbers.iterator();
         for (int i = 0; i <  height; i++) {
-            int startPos =  height - (i + 1);             // left position for  i-level value
-            int stopPos =  height + i;                    // right position for  i-level value
+            int startPos =  height - (i + 1);             // the leftmost position of the elements on the i-th level
+            int stopPos =  height + i;                    // the rightmost position of the elements of the i-th level
             for (int j = startPos; j <= stopPos; j += 2) {
-                pyramid[i][j] = sortNumIter.next();
+                pyramid[i][j] = sortIter.next();
             }
         }
         return pyramid;

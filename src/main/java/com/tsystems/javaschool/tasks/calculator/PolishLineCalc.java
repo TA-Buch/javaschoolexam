@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class PolishLineCalc {
+class PolishLineCalc {
     /**
      * Evaluate statement by representing expressions as Reverse Polish notation.
      *
@@ -17,7 +17,7 @@ public class PolishLineCalc {
      */
 
     private static final Set<String> OPERATORS = Stream.of("+","-","/","*").collect(Collectors.toSet());
-    private static final  String DELIMITERS = String.join("",OPERATORS).concat("()");
+    private static final String DELIMITERS = String.join("",OPERATORS).concat("()");
 
     private Stack<String> stackOperations = new Stack<>();
     private Stack<String> stackPolishLine = new Stack<>();
@@ -70,7 +70,7 @@ public class PolishLineCalc {
             if ((!tokens.hasMoreTokens() && isOperator(token)) || (isOperator(prev) && isOperator(token)))  {
                 stackOperations.clear();
                 stackPolishLine.clear();
-                return ;
+                return;
             }
             if (isNumber(token)) {
                 stackPolishLine.push(token);
@@ -105,6 +105,12 @@ public class PolishLineCalc {
         }
     }
 
+    private void clearContext() {
+        stackOperations.clear();
+        stackPolishLine.clear();
+        stackCalcExpr.clear();
+    }
+
     private static boolean isNumber(String token) {
         try {
             Double.parseDouble(token);
@@ -124,11 +130,5 @@ public class PolishLineCalc {
         } else {
             return 2;
         }
-    }
-
-    private void clearContext() {
-        stackOperations.clear();
-        stackPolishLine.clear();
-        stackCalcExpr.clear();
     }
 }
